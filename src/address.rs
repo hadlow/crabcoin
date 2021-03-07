@@ -35,7 +35,7 @@ impl Address
         }
     }
 
-    pub fn get(&self) -> [u8; 20]
+    pub fn get(&self) -> String
     {
         // SHA256 the public key
         let sha2: [u8; 32] = Sha256::new()
@@ -47,11 +47,13 @@ impl Address
 
         // RIPEMD160 the SHA'd public key to get
         // the 20 byte address
-        Ripemd160::new()
+        let ripemd: [u8; 20] = Ripemd160::new()
             .chain(sha2)
             .finalize()
             .as_slice()
             .try_into()
-            .expect("Invalid length")
+            .expect("Invalid length");
+
+        bs58::encode(ripemd).into_string()
     }
 }
