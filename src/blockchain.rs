@@ -28,5 +28,13 @@ impl BlockChain
         true
     }
 
+    // Save the blockchain to the filesystem
+    pub fn save()
+    {
+    }
 
+    // Load from the filesystem
+    pub fn write()
+    {
+    }
 }
