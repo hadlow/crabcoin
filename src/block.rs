@@ -1,5 +1,6 @@
-use sha2::{Sha256, Digest};
 use std::convert::TryInto;
+
+use sha2::{Sha256, Digest};
 
 use crate::transaction;
 
@@ -30,9 +31,12 @@ impl Block
 
     pub fn hash(&self) -> [u8; 32]
     {
-        let hash = Sha256::digest(&self.serialize());
-
-        hash.as_slice().try_into().expect("Invalid length")
+        Sha256::new()
+            .chain(&self.serialize())
+            .finalize()
+            .as_slice()
+            .try_into()
+            .expect("Invalid length")
     }
 
     pub fn serialize(&self) -> Vec<u8>

@@ -1,3 +1,6 @@
+use std::str;
+use std::fmt;
+
 mod block;
 mod blockchain;
 mod transaction;
@@ -16,9 +19,6 @@ fn main()
 
     let hash = block.hash();
 
-    //println!("{:?}", hash);
-
-    let address: address::Address = address::Address::new();
-
-    println!("{:?}", address.get());
+    let private_key: [u8; 32] = *b"1IfrgKcxKHtC1SEVaVKLMIjHWUqjRiX1";
+    let address: address::Address = address::Address::new(&private_key);
 }
