@@ -49,7 +49,20 @@ impl Block
         block.extend_from_slice(&self.nonce.to_be_bytes());
 
         // Serialize transactions
+        block.extend_from_slice(&self.serialize_transactions());
 
         block
+    }
+
+    fn serialize_transactions(&self) -> Vec<u8>
+    {
+        let mut serialized_tranactions: Vec<u8> = Vec::new();
+
+        for transaction in self.transactions.iter()
+        {
+            serialized_tranactions.extend_from_slice(&transaction.serialize());
+        }
+
+        serialized_tranactions
     }
 }
