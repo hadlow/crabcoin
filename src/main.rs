@@ -2,6 +2,7 @@ mod block;
 mod blockchain;
 mod transaction;
 mod address;
+mod network;
 
 fn main()
 {
@@ -20,4 +21,7 @@ fn main()
     let address: address::Address = address::Address::new(&private_key);
 
     println!("{}", address.get());
+
+    // network
+    let net: network::Network = network::Network::new();
 }

@@ -19,6 +19,15 @@ pub struct Transaction
 
 impl Transaction
 {
+    pub fn new() -> Self
+    {
+        Self
+        {
+            inputs: Vec::new(),
+            outputs: Vec::new()
+        }
+    }
+
     pub fn serialize(&self) -> Vec<u8>
     {
         let mut transaction: Vec<u8> = Vec::new();
